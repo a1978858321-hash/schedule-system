@@ -1,0 +1,176 @@
+{
+  "EMP001": {
+    "name": "曲恒佳",
+    "position": "咨客、一期水吧、花房",
+    "skills": [
+      "咨客",
+      "一期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周四",
+    "rest_day": "周四"
+  },
+  "EMP002": {
+    "name": "马思佳",
+    "position": "咨客、一期水吧、花房",
+    "skills": [
+      "咨客",
+      "一期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周四",
+    "rest_day": "周四"
+  },
+  "EMP003": {
+    "name": "王赢",
+    "position": "咨客、一期水吧、花房",
+    "skills": [
+      "咨客",
+      "一期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周二",
+    "rest_day": "周二"
+  },
+  "EMP004": {
+    "name": "张雅宁",
+    "position": "一期水吧、花房",
+    "skills": [
+      "一期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周一",
+    "rest_day": "周一"
+  },
+  "EMP005": {
+    "name": "范莲彤",
+    "position": "二期水吧",
+    "skills": [
+      "二期水吧"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周日",
+    "rest_day": "周日"
+  },
+  "EMP006": {
+    "name": "傅益宁",
+    "position": "二期水吧、固定早早班",
+    "skills": [
+      "二期水吧"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [
+      "二期水吧-早早班"
+    ],
+    "unavailable_days": "周一",
+    "rest_day": "周一",
+    "fixed_shift": "二期水吧-早早班"
+  },
+  "EMP007": {
+    "name": "李斯琦",
+    "position": "咨客、一期水吧、花房",
+    "skills": [
+      "咨客",
+      "一期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周六",
+    "rest_day": "周六"
+  },
+  "EMP008": {
+    "name": "张俊畅",
+    "position": "咨客、一期水吧、花房",
+    "skills": [
+      "咨客",
+      "一期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周六",
+    "rest_day": "周六"
+  },
+  "EMP009": {
+    "name": "周佳欣",
+    "position": "一期水吧",
+    "skills": [
+      "一期水吧"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周五",
+    "rest_day": "周五"
+  },
+  "EMP010": {
+    "name": "赵墨涵",
+    "position": "咨客、二期水吧、花房",
+    "skills": [
+      "咨客",
+      "二期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周五",
+    "rest_day": "周五"
+  },
+  "EMP011": {
+    "name": "汪洁",
+    "position": "二期水吧",
+    "skills": [
+      "二期水吧"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周三",
+    "rest_day": "周三"
+  },
+  "EMP012": {
+    "name": "刘丹丹",
+    "position": "一期水吧、花房",
+    "skills": [
+      "一期水吧",
+      "花房"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "周三",
+    "rest_day": "周三"
+  },
+  "EMP013": {
+    "name": "王小丫",
+    "position": "二期水吧、固定早早班",
+    "skills": [
+      "二期水吧"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [
+      "二期水吧-早早班"
+    ],
+    "unavailable_days": "周一",
+    "rest_day": "周一",
+    "fixed_shift": "二期水吧-早早班"
+  },
+  "EMP014": {
+    "name": "何雨乐",
+    "position": "二期水吧",
+    "skills": [
+      "二期水吧"
+    ],
+    "weekly_hours": 40,
+    "preferred_shifts": [],
+    "unavailable_days": "",
+    "rest_day": "无"
+  }
+}

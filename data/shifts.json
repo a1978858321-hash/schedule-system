@@ -1,0 +1,92 @@
+{
+  "二期水吧-早早班": {
+    "start_time": "07:30",
+    "end_time": "16:30",
+    "required_staff": 2,
+    "required_skills": [
+      "二期水吧"
+    ],
+    "duration_hours": 9.0,
+    "position": "二期水吧"
+  },
+  "二期水吧-早班": {
+    "start_time": "08:30",
+    "end_time": "17:30",
+    "required_staff": 2,
+    "required_skills": [
+      "二期水吧"
+    ],
+    "duration_hours": 9.0,
+    "position": "二期水吧"
+  },
+  "二期水吧-晚班": {
+    "start_time": "09:30",
+    "end_time": "18:30",
+    "required_staff": 2,
+    "required_skills": [
+      "二期水吧"
+    ],
+    "duration_hours": 9.0,
+    "position": "二期水吧"
+  },
+  "一期水吧-早班": {
+    "start_time": "08:30",
+    "end_time": "17:30",
+    "required_staff": 1,
+    "required_skills": [
+      "一期水吧"
+    ],
+    "duration_hours": 9.0,
+    "position": "一期水吧"
+  },
+  "一期水吧-晚班": {
+    "start_time": "09:30",
+    "end_time": "18:30",
+    "required_staff": 1,
+    "required_skills": [
+      "一期水吧"
+    ],
+    "duration_hours": 9.0,
+    "position": "一期水吧"
+  },
+  "咨客-早班": {
+    "start_time": "08:30",
+    "end_time": "17:30",
+    "required_staff": 1,
+    "required_skills": [
+      "咨客"
+    ],
+    "duration_hours": 9.0,
+    "position": "咨客"
+  },
+  "咨客-晚班": {
+    "start_time": "09:30",
+    "end_time": "18:30",
+    "required_staff": 1,
+    "required_skills": [
+      "咨客"
+    ],
+    "duration_hours": 9.0,
+    "position": "咨客"
+  },
+  "花房-早班": {
+    "start_time": "08:30",
+    "end_time": "17:30",
+    "required_staff": 1,
+    "required_skills": [
+      "花房"
+    ],
+    "duration_hours": 9.0,
+    "position": "花房"
+  },
+  "花房-晚班": {
+    "start_time": "09:30",
+    "end_time": "18:30",
+    "required_staff": 1,
+    "required_skills": [
+      "花房"
+    ],
+    "duration_hours": 9.0,
+    "position": "花房"
+  }
+}
