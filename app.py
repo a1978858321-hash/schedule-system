@@ -2116,20 +2116,16 @@ def export_schedule(format_type: str = "excel"):
             weekday_chinese = get_weekday_chinese(date_str)
             
             if emp_id in assignments:
-                # 有班次，显示班次名称（简化显示）
+                # 有班次，显示完整班次名称（包含岗位信息）
                 shift_id = assignments[emp_id]
-                # 简化班次名称显示
+                emp_schedule[emp_name][date_str] = shift_id
+                # 记录班次类型用于待岗标注
                 if "早早" in shift_id:
-                    emp_schedule[emp_name][date_str] = "早早班"
                     current_shift_type = "早早班"
                 elif "早" in shift_id:
-                    emp_schedule[emp_name][date_str] = "早班"
                     current_shift_type = "早班"
                 elif "晚" in shift_id:
-                    emp_schedule[emp_name][date_str] = "晚班"
                     current_shift_type = "晚班"
-                else:
-                    emp_schedule[emp_name][date_str] = shift_id
             elif rest_day and weekday_chinese == rest_day:
                 emp_schedule[emp_name][date_str] = "休"
             else:
@@ -2812,7 +2808,7 @@ def view_schedule():
                         display_shift = "待岗"
                 
                 calendar_data.append({
-                    "日期": f"{date_str[5:]}({weekday_chinese[:1]})",
+                    "日期": f"{date_str[5:]}({weekday_chinese})",
                     "员工": emp_name,
                     "班次": display_shift
                 })
