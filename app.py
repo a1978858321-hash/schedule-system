@@ -2324,6 +2324,92 @@ def export_schedule(format_type: str = "excel"):
             # 冻结窗格：固定第一列和前4行（包括新增的标题行）
             worksheet.freeze_panes = 'B5'
             
+            # --- 新增：文字排班海报（复制用） ---
+            poster_sheet = writer.book.create_sheet('排班海报(复制用)')
+            
+            # 设置样式
+            poster_font = Font(name='微软雅黑', size=11)
+            date_font = Font(name='微软雅黑', size=12, bold=True)
+            alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
+            
+            # 设置列宽
+            poster_sheet.column_dimensions['A'].width = 60
+            
+            current_row = 1
+            
+            for date_str in dates:
+                # 写入日期
+                weekday = get_weekday_chinese(date_str)
+                d = datetime.strptime(date_str, "%Y-%m-%d")
+                date_text = f"{d.month}.{d.day} {weekday}"
+                
+                cell = poster_sheet.cell(row=current_row, column=1)
+                cell.value = date_text
+                cell.font = date_font
+                cell.alignment = alignment
+                current_row += 1
+                
+                # 获取当天排班并分组
+                date_schedule = schedule.get(date_str, {})
+                assignments = date_schedule.get("assignments", {})
+                
+                # 按岗位分组：{岗位: {班次: [员工名, ...]}}
+                role_groups = {}
+                for emp_id, shift_id in assignments.items():
+                    emp_name = employees.get(emp_id, {}).get("name", emp_id)
+                    
+                    # 拆分岗位和班次
+                    if '-' in shift_id:
+                        role, shift_type = shift_id.split('-', 1)
+                    else:
+                        # 备用拆分逻辑
+                        found = False
+                        for kw in ["早早班", "早班", "晚班", "早", "晚"]:
+                            if kw in shift_id:
+                                role = shift_id.replace(kw, "").strip()
+                                shift_type = kw
+                                found = True
+                                break
+                        if not found:
+                            role, shift_type = shift_id, ""
+                    
+                    if role not in role_groups:
+                        role_groups[role] = {}
+                    if shift_type not in role_groups[role]:
+                        role_groups[role][shift_type] = []
+                    role_groups[role][shift_type].append(emp_name)
+                
+                # 按照岗位顺序写入内容
+                # 可以根据需要定义岗位排序，这里使用字典默认顺序或字母顺序
+                for role in sorted(role_groups.keys()):
+                    role_shifts = role_groups[role]
+                    # 排序班次：早早 -> 早 -> 晚
+                    shift_order = {"早早班": 0, "早班": 1, "晚班": 2, "早": 1, "晚": 2}
+                    sorted_shifts = sorted(role_shifts.keys(), key=lambda x: shift_order.get(x, 99))
+                    
+                    for i, shift_type in enumerate(sorted_shifts):
+                        emps = " ".join(role_shifts[shift_type])
+                        if i == 0:
+                            # 岗位的第一行
+                            line_text = f"{role}{shift_type}：{emps}"
+                        else:
+                            # 岗位的后续行，使用空格缩进，并只显示班次
+                            indent = " " * (len(role.encode('gbk')) if hasattr(role, 'encode') else len(role) * 2)
+                            line_text = f"{indent}{shift_type}：{emps}"
+                        
+                        cell = poster_sheet.cell(row=current_row, column=1)
+                        cell.value = line_text
+                        cell.font = poster_font
+                        cell.alignment = alignment
+                        current_row += 1
+                
+                # 每天之间留一空行
+                current_row += 1
+            
+            # 隐藏网格线
+            poster_sheet.sheet_view.showGridLines = False
+            # --- 文字排班海报结束 ---
+
             # 添加图例说明（在数据下方）
             legend_row = worksheet.max_row + 2
             legend_items = [
