@@ -47,554 +47,201 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 自定义CSS样式 - 全面美化界面
+# 自定义CSS样式 - 2026 极致灵动 & Apple Bento Pro 风格
 st.markdown("""
 <style>
-    /* ===== 主题色彩定义 ===== */
+    /* ===== 核心设计变量 (Vivid & Light) ===== */
     :root {
-        --primary-color: #4361ee;
-        --primary-light: #7b8cff;
-        --primary-dark: #3a0ca3;
-        --success-color: #06d6a0;
-        --warning-color: #ffd166;
-        --danger-color: #ef476f;
-        --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --sidebar-bg: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        --bg-primary: #ffffff;
+        --bg-secondary: #fbfbfd;
+        --sidebar-bg: rgba(255, 255, 255, 0.7);
+        --accent-blue: #0071e3;
+        --accent-blue-glow: rgba(0, 113, 227, 0.3);
+        --accent-purple: #af52de;
+        --accent-pink: #ff2d55;
+        --accent-green: #34c759;
+        --accent-orange: #ff9500;
+        --text-main: #1d1d1f;
+        --text-sub: #86868b;
+        --glass-border: rgba(255, 255, 255, 0.8);
+        --card-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        --card-hover-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        --border-radius-card: 24px;
+        --border-radius-ui: 16px;
     }
     
-    /* ===== 隐藏默认元素 ===== */
+    /* ===== 全局排版与背景 ===== */
+    .stApp {
+        background: 
+            radial-gradient(at 0% 0%, rgba(0, 113, 227, 0.08) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(175, 82, 222, 0.05) 0px, transparent 50%),
+            radial-gradient(at 50% 100%, rgba(52, 199, 89, 0.05) 0px, transparent 50%);
+        color: var(--text-main);
+        font-family: "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    }
+    
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     
-    /* ===== 侧边栏深度美化 ===== */
-    [data-testid="stSidebar"] {
-        background: var(--sidebar-bg);
-        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-    }
-    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
-    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3 {
-        color: #ffffff !important;
-    }
-    [data-testid="stSidebar"] .stRadio > label {
-        color: rgba(255,255,255,0.9) !important;
-        font-size: 13px;
-        font-weight: 500;
-    }
-    [data-testid="stSidebar"] .stRadio [role="radiogroup"] label {
-        color: #ffffff !important;
-        font-size: 14px;
-        padding: 10px 15px;
-        border-radius: 10px;
-        margin: 3px 0;
-        transition: all 0.25s ease;
-        border: 1px solid transparent;
-    }
-    [data-testid="stSidebar"] .stRadio [role="radiogroup"] label:hover {
-        background: rgba(255,255,255,0.12);
-        border-color: rgba(255,255,255,0.2);
-        transform: translateX(3px);
-    }
-    [data-testid="stSidebar"] .stRadio [role="radiogroup"] label[data-checked="true"] {
-        background: linear-gradient(135deg, rgba(102,126,234,0.4) 0%, rgba(118,75,162,0.4) 100%);
-        border-color: rgba(255,255,255,0.3);
-    }
-    [data-testid="stSidebar"] hr {
-        border-color: rgba(255,255,255,0.15);
-        margin: 15px 0;
-    }
-    [data-testid="stSidebar"] .stExpander {
-        background: rgba(255,255,255,0.05);
-        border-radius: 10px;
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-    [data-testid="stSidebar"] .stExpander summary {
-        color: #ffffff !important;
-    }
-    
-    /* ===== 主内容区美化 ===== */
+    /* 极致内距掌控 */
     .main .block-container {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding: 4rem 6rem !important;
+        max-width: 1500px;
+        animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     
-    /* ===== 统计卡片组件 ===== */
-    .stat-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 22px 18px;
-        border-radius: 16px;
-        color: white;
-        text-align: center;
-        box-shadow: 0 8px 25px rgba(102,126,234,0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    @keyframes slideUpFade {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-    .stat-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 35px rgba(102,126,234,0.4);
+    
+    /* ===== 沈浸式浮動側邊欄 ===== */
+    [data-testid="stSidebar"] {
+        background: var(--sidebar-bg) !important;
+        backdrop-filter: blur(30px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+        border-right: 1px solid rgba(255,255,255,0.3) !important;
+        margin: 20px;
+        height: calc(100vh - 40px) !important;
+        border-radius: 32px !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.05) !important;
     }
-    .stat-card.green {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        box-shadow: 0 8px 25px rgba(17,153,142,0.3);
+    
+    [data-testid="stSidebarNav"] { display: none; }
+    
+    /* 侧边栏导航 */
+    [data-testid="stSidebar"] .stRadio [role="radiogroup"] {
+        padding: 1rem;
+        gap: 12px;
     }
-    .stat-card.green:hover {
-        box-shadow: 0 12px 35px rgba(17,153,142,0.4);
+    
+    [data-testid="stSidebar"] .stRadio [role="radiogroup"] label {
+        background: rgba(255, 255, 255, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        border-radius: 20px !important;
+        padding: 16px 22px !important;
+        color: var(--text-main) !important;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        margin: 0 !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
     }
-    .stat-card.orange {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        box-shadow: 0 8px 25px rgba(245,87,108,0.3);
+    
+    [data-testid="stSidebar"] .stRadio [role="radiogroup"] label:hover {
+        background: white !important;
+        transform: scale(1.03) translateX(5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.04);
     }
-    .stat-card.orange:hover {
-        box-shadow: 0 12px 35px rgba(245,87,108,0.4);
-    }
-    .stat-card.cyan {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        box-shadow: 0 8px 25px rgba(79,172,254,0.3);
-    }
-    .stat-card h2 {
-        font-size: 32px;
-        margin: 0;
-        font-weight: 700;
+    
+    [data-testid="stSidebar"] .stRadio [role="radiogroup"] label[data-checked="true"] {
+        background: var(--text-main) !important;
         color: white !important;
-    }
-    .stat-card p {
-        margin: 8px 0 0 0;
-        opacity: 0.92;
-        font-size: 14px;
-        font-weight: 500;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15) !important;
+        border: none !important;
     }
     
-    /* ===== 表格深度美化 ===== */
-    .stDataFrame {
-        border-radius: 12px;
+    /* ===== Bento Grid 2.0 (极致比例) ===== */
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 28px;
+        margin-bottom: 3rem;
+    }
+    
+    .bento-card {
+        background: white;
+        border-radius: var(--border-radius-card);
+        padding: 35px;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(0,0,0,0.01);
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
-    .stDataFrame [data-testid="stDataFrameResizable"] {
-        border-radius: 12px;
     }
     
-    /* ===== 按钮组件美化 ===== */
-    .stButton > button {
-        border-radius: 10px;
-        font-weight: 600;
-        transition: all 0.25s ease;
-        border: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-    .stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    .stButton > button[kind="primary"]:hover {
-        background: linear-gradient(135deg, #5a6fd6 0%, #6a4393 100%);
+    .bento-card:hover {
+        transform: translateY(-12px) scale(1.01);
+        box-shadow: var(--card-hover-shadow);
     }
     
-    /* ===== 下载按钮美化 ===== */
-    .stDownloadButton > button {
-        border-radius: 10px;
-        font-weight: 500;
-        transition: all 0.25s ease;
-    }
-    .stDownloadButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    }
-    
-    /* ===== 标题样式 ===== */
-    h1 {
-        color: #1a1a2e !important;
-        font-weight: 800;
-        padding-bottom: 12px;
-        border-bottom: 4px solid transparent;
-        border-image: linear-gradient(90deg, #667eea, #764ba2) 1;
-        margin-bottom: 25px;
-        font-size: 2rem !important;
-    }
-    h2 {
-        color: #16213e !important;
+    .metric-title {
+        font-size: 14px;
         font-weight: 700;
-        margin-top: 1.5rem;
-    }
-    h3 {
-        color: #2d3748 !important;
-        font-weight: 600;
-    }
-    
-    /* ===== 信息提示框美化 ===== */
-    .stAlert {
-        border-radius: 12px;
-        border: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        color: var(--text-sub);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
     }
     
-    /* ===== 输入框美化 ===== */
-    .stTextInput > div > div > input,
-    .stSelectbox > div > div,
-    .stMultiSelect > div > div {
-        border-radius: 10px;
-        border: 2px solid #e2e8f0;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .stTextInput > div > div > input:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+    .metric-value-large {
+        font-size: 56px;
+        font-weight: 800;
+        letter-spacing: -2px;
+        color: var(--text-main);
+        line-height: 1;
     }
     
-    /* ===== 展开面板美化 ===== */
-    .streamlit-expanderHeader {
-        border-radius: 10px;
-        background: #f8fafc;
-        font-weight: 600;
-    }
-    .streamlit-expanderContent {
-        border-radius: 0 0 10px 10px;
-    }
-    
-    /* ===== 班次标签样式 ===== */
-    .shift-tag {
-        display: inline-block;
-        padding: 6px 14px;
-        border-radius: 25px;
-        font-size: 13px;
-        font-weight: 600;
-        margin: 3px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .shift-early {
-        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        color: #c44536;
-    }
-    .shift-early-early {
-        background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
-        color: #1a535c;
-    }
-    .shift-late {
-        background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-        color: #3d348b;
-    }
-    .shift-rest {
-        background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
-        color: #2d6a4f;
-    }
-    .shift-standby {
-        background: linear-gradient(135deg, #ffeaa7 0%, #dfe6e9 100%);
-        color: #6c5ce7;
-    }
-    
-    /* ===== 流程步骤指示器 ===== */
-    .workflow-step {
-        display: inline-flex;
-        align-items: center;
-        padding: 8px 16px;
-        margin: 5px;
-        border-radius: 25px;
-        font-size: 13px;
-        font-weight: 500;
-        background: #f1f5f9;
-        color: #64748b;
-        transition: all 0.2s ease;
-    }
-    .workflow-step.active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        box-shadow: 0 4px 15px rgba(102,126,234,0.4);
-    }
-    .workflow-step.completed {
-        background: linear-gradient(135deg, #06d6a0 0%, #1b9aaa 100%);
-        color: white;
-    }
-    
-    /* ===== 图例样式 ===== */
-    .legend-item {
-        display: inline-flex;
-        align-items: center;
-        margin: 5px 12px 5px 0;
-        font-size: 13px;
-    }
-    .legend-color {
-        width: 16px;
-        height: 16px;
-        border-radius: 4px;
-        margin-right: 6px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    /* ===== 分割线美化 ===== */
-    hr {
-        border: none;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
-        margin: 25px 0;
-    }
-    
-    /* ===== 标签页美化 ===== */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-    }
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 10px 10px 0 0;
-        padding: 12px 24px;
-        font-weight: 600;
-    }
-    
-    /* ===== 进度条美化 ===== */
-    .stProgress > div > div > div > div {
-        background: linear-gradient(90deg, #667eea, #764ba2);
-        border-radius: 10px;
-    }
-    
-    /* ========================================
-       ===== 移动端响应式设计 (Mobile) =====
-       ======================================== */
-    
-    /* ----- 平板设备 (768px - 1024px) ----- */
-    @media screen and (max-width: 1024px) {
-        .main .block-container {
-            padding: 1rem 1.5rem;
-        }
-        
-        .stat-card h2 {
-            font-size: 26px;
-        }
-        
-        .stat-card p {
-            font-size: 12px;
-        }
-        
-        h1 {
-            font-size: 1.6rem !important;
-        }
-        
-        h2 {
-            font-size: 1.3rem !important;
-        }
-    }
-    
-    /* ----- 手机设备 (小于 768px) ----- */
-    @media screen and (max-width: 768px) {
-        /* 主内容区适配 */
-        .main .block-container {
-            padding: 0.8rem 1rem !important;
-            max-width: 100% !important;
-        }
-        
-        /* 标题缩小 */
-        h1 {
-            font-size: 1.4rem !important;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
-        
-        h2 {
-            font-size: 1.15rem !important;
-            margin-top: 1rem;
-        }
-        
-        h3 {
-            font-size: 1rem !important;
-        }
-        
-        /* 侧边栏优化 */
-        [data-testid="stSidebar"] {
-            min-width: 240px !important;
-            width: 240px !important;
-        }
-        
-        [data-testid="stSidebar"] .stRadio [role="radiogroup"] label {
-            font-size: 13px;
-            padding: 12px 10px;
-        }
-        
-        /* 统计卡片：手机上竖向排列 */
-        .stat-card {
-            padding: 16px 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-        }
-        
-        .stat-card h2 {
-            font-size: 24px;
-        }
-        
-        .stat-card p {
-            font-size: 11px;
-            margin-top: 4px;
-        }
-        
-        /* 按钮适配：增大触摸区域 */
+    /* ===== 苹果级交互按鈕 ===== */
         .stButton > button {
-            min-height: 48px !important;
-            font-size: 14px !important;
-            padding: 12px 16px !important;
-            width: 100% !important;
-        }
-        
-        .stDownloadButton > button {
-            min-height: 48px !important;
-            font-size: 14px !important;
-            padding: 12px 16px !important;
-            width: 100% !important;
-        }
-        
-        /* 输入框适配 */
-        .stTextInput > div > div > input {
-            min-height: 48px !important;
-            font-size: 16px !important;
-            padding: 12px !important;
-        }
-        
-        .stSelectbox > div > div {
-            min-height: 48px !important;
-        }
-        
-        .stSelectbox > div > div > div {
-            font-size: 14px !important;
-        }
-        
-        .stNumberInput > div > div > input {
-            min-height: 48px !important;
-            font-size: 16px !important;
-        }
-        
-        /* 表格容器：横向滚动 */
-        .stDataFrame {
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .stDataFrame > div {
-            overflow-x: auto !important;
-        }
-        
-        /* 展开面板适配 */
-        .streamlit-expanderHeader {
+        border-radius: 22px !important;
+        padding: 12px 32px !important;
+        font-weight: 700 !important;
+        background: var(--bg-secondary) !important;
+        color: var(--text-main) !important;
+        border: 1px solid rgba(0,0,0,0.05) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    
+    .stButton > button:hover {
+        transform: scale(1.06) !important;
+        background: white !important;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.06) !important;
+        border-color: var(--accent-blue) !important;
+    }
+    
+    .stButton > button[kind="primary"] {
+        background: var(--accent-blue) !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    /* ===== 側邊欄標題區域 ===== */
+    .brand-section {
+        padding: 3.5rem 2rem 2.5rem 2rem;
+        text-align: left;
+    }
+    
+    .brand-section h1 {
+        font-size: 32px !important;
+        font-weight: 900 !important;
+        color: var(--text-main) !important;
+        letter-spacing: -1.5px;
+        margin: 0 !important;
+    }
+    
+    .brand-section p {
             font-size: 14px;
-            padding: 12px;
-        }
-        
-        /* 图例适配 */
-        .legend-item {
-            font-size: 11px;
-            margin: 4px 8px 4px 0;
-        }
-        
-        .legend-color {
-            width: 14px;
-            height: 14px;
-        }
-        
-        /* 班次标签适配 */
-        .shift-tag {
-            padding: 5px 10px;
-            font-size: 11px;
-            margin: 2px;
-        }
-        
-        /* 信息提示框 */
-        .stAlert {
-            padding: 12px;
-            font-size: 13px;
-        }
-        
-        /* 分割线 */
-        hr {
-            margin: 15px 0;
-        }
-        
-        /* 标签页适配 */
-        .stTabs [data-baseweb="tab"] {
-            padding: 10px 12px;
-            font-size: 13px;
-        }
+        color: var(--accent-blue);
+        font-weight: 700;
+        margin-top: 8px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
-    
-    /* ----- 超小屏幕设备 (小于 480px) ----- */
-    @media screen and (max-width: 480px) {
-        .main .block-container {
-            padding: 0.5rem 0.8rem !important;
-        }
-        
-        h1 {
-            font-size: 1.2rem !important;
-        }
-        
-        h2 {
-            font-size: 1.05rem !important;
-        }
-        
-        .stat-card {
-            padding: 14px 10px;
-        }
-        
-        .stat-card h2 {
-            font-size: 20px;
-        }
-        
-        .stat-card p {
-            font-size: 10px;
-        }
-        
-        /* 侧边栏更窄 */
-        [data-testid="stSidebar"] {
-            min-width: 220px !important;
-            width: 220px !important;
-        }
-        
-        [data-testid="stSidebar"] .stRadio [role="radiogroup"] label {
-            font-size: 12px;
-            padding: 10px 8px;
-        }
-        
-        /* 表格字体缩小 */
-        .stDataFrame {
-            font-size: 11px !important;
-        }
+
+    /* ===== 数据表格 Pro ===== */
+    .stDataFrame, .stDataEditor {
+        background: white !important;
+        border-radius: 28px !important;
+        padding: 15px !important;
+        box-shadow: var(--card-shadow) !important;
+        border: none !important;
     }
-    
-    /* ----- 横屏模式优化 ----- */
-    @media screen and (max-width: 768px) and (orientation: landscape) {
-        .main .block-container {
-            padding: 0.5rem 1rem !important;
-        }
-        
-        h1 {
-            font-size: 1.3rem !important;
-            margin-bottom: 10px;
-        }
-        
-        .stat-card {
-            padding: 12px 10px;
-        }
-        
-        .stat-card h2 {
-            font-size: 22px;
-        }
-    }
-    
-    /* ----- 触摸设备优化 ----- */
-    @media (hover: none) and (pointer: coarse) {
-        /* 增大所有可点击元素的触摸区域 */
-        .stButton > button,
-        .stDownloadButton > button {
-            min-height: 48px !important;
-        }
-        
-        /* 禁用 hover 效果（触摸设备上不需要） */
-        .stButton > button:hover {
-            transform: none;
-        }
-        
-        .stat-card:hover {
-            transform: none;
-        }
-        
-        /* 增大复选框和单选框的触摸区域 */
-        .stCheckbox > label,
-        .stRadio > label {
-            padding: 12px 8px !important;
-        }
+
+    /* ===== 响应式适配 ===== */
+    @media (max-width: 1200px) {
+        .main .block-container { padding: 2rem 2rem !important; }
+        .bento-grid { grid-template-columns: repeat(6, 1fr); }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -654,16 +301,17 @@ def employee_management():
     
     employees = st.session_state.employees
     
-    # 顶部统计卡片
+    # 顶部统计卡片 (使用 Streamlit 原生组件，避免前端节点异常)
+    skills_count = sum(len(emp.get("skills", [])) for emp in employees.values())
+    rest_days_count = len([e for e in employees.values() if e.get("rest_day")])
+    
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("👥 员工总数", len(employees), delta=None)
+        st.metric("员工总数", len(employees))
     with col2:
-        skills_count = sum(len(emp.get("skills", [])) for emp in employees.values())
-        st.metric("🎯 技能总数", skills_count)
+        st.metric("核心技能", skills_count)
     with col3:
-        rest_days = len([e for e in employees.values() if e.get("rest_day")])
-        st.metric("📅 已设休息日", f"{rest_days}/{len(employees)}")
+        st.metric("已排休息日", rest_days_count)
     
     st.markdown("---")
     
@@ -824,16 +472,17 @@ def shift_management():
     
     shifts = st.session_state.shifts
     
-    # 顶部统计
-    col_stat1, col_stat2, col_stat3 = st.columns(3)
-    with col_stat1:
-        st.metric("📋 班次数量", len(shifts))
-    with col_stat2:
-        total_staff = sum(s.get("required_staff", 1) for s in shifts.values())
-        st.metric("👥 每日需人", total_staff)
-    with col_stat3:
-        total_hours = sum(s.get("duration_hours", 8) for s in shifts.values())
-        st.metric("⏱️ 总工时", f"{total_hours}h")
+    # 顶部统计 (使用 Streamlit 原生组件，避免前端节点异常)
+    total_staff = sum(s.get("required_staff", 1) for s in shifts.values())
+    total_hours = sum(s.get("duration_hours", 8) for s in shifts.values())
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("班次方案", len(shifts))
+    with col2:
+        st.metric("每日人力缺口", total_staff)
+    with col3:
+        st.metric("预估总工时", f"{int(total_hours)}h")
     
     st.markdown("---")
     
@@ -1203,14 +852,21 @@ def generate_schedule():
                 st.success(f"✅ 班次管理：已有 {len(shifts)} 个班次")
         return
     
-    # 顶部统计
+    # 顶部统计 (Bento Pro)
+    total_required = sum(s.get('required_staff',1) for s in shifts.values())
     st.markdown(f"""
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                padding: 20px; border-radius: 12px; color: white; margin-bottom: 20px;">
-        <div style="display: flex; justify-content: space-around; text-align: center;">
-            <div><h2 style="margin:0; color:white;">{len(employees)}</h2><p style="margin:0; opacity:0.9;">员工</p></div>
-            <div><h2 style="margin:0; color:white;">{len(shifts)}</h2><p style="margin:0; opacity:0.9;">班次</p></div>
-            <div><h2 style="margin:0; color:white;">{sum(s.get('required_staff',1) for s in shifts.values())}</h2><p style="margin:0; opacity:0.9;">每日需人</p></div>
+    <div class="bento-grid">
+        <div class="bento-card" style="grid-column: span 4;">
+            <div class="metric-title">就绪员工</div>
+            <div class="metric-value-large">{len(employees)}</div>
+        </div>
+        <div class="bento-card" style="grid-column: span 4;">
+            <div class="metric-title">活跃班次</div>
+            <div class="metric-value-large">{len(shifts)}</div>
+        </div>
+        <div class="bento-card" style="grid-column: span 4;">
+            <div class="metric-title">每日岗位需求</div>
+            <div class="metric-value-large">{total_required}</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1286,6 +942,38 @@ def generate_schedule():
         # last_work_date: 上次工作日期
         # rested: 是否刚休息过（用于判断是否需要轮换）
         employee_shift_cycle = {emp_id: {"current_type": None, "last_work_date": None, "rested": False} for emp_id in employee_list}
+        
+        # 【修复】从历史排班数据中读取每个员工最近一次的班次类型
+        # 这样新排班时可以正确地安排相反班次（休息后轮换）
+        existing_schedule = st.session_state.schedule
+        if existing_schedule:
+            # 获取所有历史日期并按时间倒序排列（最近的优先）
+            historical_dates = sorted(existing_schedule.keys(), reverse=True)
+            
+            for emp_id in employee_list:
+                # 遍历历史日期，找到该员工最近一次的班次
+                for date_str in historical_dates:
+                    date_schedule = existing_schedule.get(date_str, {})
+                    assignments = date_schedule.get("assignments", {})
+                    
+                    if emp_id in assignments:
+                        shift_id = assignments[emp_id]
+                        # 提取班次类型
+                        if "早早" in shift_id:
+                            shift_type = "早早班"
+                        elif "早" in shift_id:
+                            shift_type = "早班"
+                        elif "晚" in shift_id:
+                            shift_type = "晚班"
+                        else:
+                            shift_type = "其他"
+                        
+                        employee_shift_cycle[emp_id] = {
+                            "current_type": shift_type,
+                            "last_work_date": date_str,
+                            "rested": False
+                        }
+                        break  # 找到最近一次班次后跳出
         
         def get_shift_type(shift_id: str) -> str:
             """获取班次类型（早早班/早班/晚班/其他）"""
@@ -2201,9 +1889,9 @@ def export_schedule(format_type: str = "excel"):
         output = BytesIO()
         with pd.ExcelWriter(output, engine='openpyxl') as writer:
             # 写入主表，从第3行开始（留出标题行）
-            df.to_excel(writer, sheet_name='排班表', startrow=2)
+            df.to_excel(writer, sheet_name='完整排班表', startrow=2)
             
-            worksheet = writer.sheets['排班表']
+            worksheet = writer.sheets['完整排班表']
             
             # 添加专业标题
             title_font = Font(color="1F4E79", bold=True, size=16)
@@ -2324,8 +2012,8 @@ def export_schedule(format_type: str = "excel"):
             # 冻结窗格：固定第一列和前4行（包括新增的标题行）
             worksheet.freeze_panes = 'B5'
             
-            # --- 新增：文字排班海报（复制用） ---
-            poster_sheet = writer.book.create_sheet('排班海报(复制用)')
+            # --- 新增：纯文字排班表（便于复制） ---
+            poster_sheet = writer.book.create_sheet('排班表')
             
             # 设置样式
             poster_font = Font(name='微软雅黑', size=11)
@@ -2335,13 +2023,16 @@ def export_schedule(format_type: str = "excel"):
             # 设置列宽
             poster_sheet.column_dimensions['A'].width = 60
             
+            # 定义岗位显示顺序
+            role_display_order = ["咨客", "水吧", "一期水吧", "二期水吧", "花房"]
+            
             current_row = 1
             
             for date_str in dates:
-                # 写入日期
+                # 写入日期（格式：1.16星期五）
                 weekday = get_weekday_chinese(date_str)
                 d = datetime.strptime(date_str, "%Y-%m-%d")
-                date_text = f"{d.month}.{d.day} {weekday}"
+                date_text = f"{d.month}.{d.day}{weekday}"
                 
                 cell = poster_sheet.cell(row=current_row, column=1)
                 cell.value = date_text
@@ -2353,7 +2044,7 @@ def export_schedule(format_type: str = "excel"):
                 date_schedule = schedule.get(date_str, {})
                 assignments = date_schedule.get("assignments", {})
                 
-                # 按岗位分组：{岗位: {班次: [员工名, ...]}}
+                # 按岗位分组：{岗位: {班次简称: [员工名, ...]}}
                 role_groups = {}
                 for emp_id, shift_id in assignments.items():
                     emp_name = employees.get(emp_id, {}).get("name", emp_id)
@@ -2373,29 +2064,39 @@ def export_schedule(format_type: str = "excel"):
                         if not found:
                             role, shift_type = shift_id, ""
                     
+                    # 简化班次显示：早早班->早早，早班->早，晚班->晚
+                    shift_short = shift_type.replace("班", "")
+                    
                     if role not in role_groups:
                         role_groups[role] = {}
-                    if shift_type not in role_groups[role]:
-                        role_groups[role][shift_type] = []
-                    role_groups[role][shift_type].append(emp_name)
+                    if shift_short not in role_groups[role]:
+                        role_groups[role][shift_short] = []
+                    role_groups[role][shift_short].append(emp_name)
                 
                 # 按照岗位顺序写入内容
-                # 可以根据需要定义岗位排序，这里使用字典默认顺序或字母顺序
-                for role in sorted(role_groups.keys()):
+                sorted_roles = sorted(role_groups.keys(), 
+                    key=lambda x: role_display_order.index(x) if x in role_display_order else 99)
+                
+                for role in sorted_roles:
                     role_shifts = role_groups[role]
                     # 排序班次：早早 -> 早 -> 晚
-                    shift_order = {"早早班": 0, "早班": 1, "晚班": 2, "早": 1, "晚": 2}
+                    shift_order = {"早早": 0, "早": 1, "晚": 2}
                     sorted_shifts = sorted(role_shifts.keys(), key=lambda x: shift_order.get(x, 99))
                     
-                    for i, shift_type in enumerate(sorted_shifts):
-                        emps = " ".join(role_shifts[shift_type])
+                    for i, shift_short in enumerate(sorted_shifts):
+                        emps = " ".join(role_shifts[shift_short])
                         if i == 0:
-                            # 岗位的第一行
-                            line_text = f"{role}{shift_type}：{emps}"
+                            # 岗位的第一行：咨客岗早：王赢
+                            line_text = f"{role}{shift_short}：{emps}"
                         else:
-                            # 岗位的后续行，使用空格缩进，并只显示班次
-                            indent = " " * (len(role.encode('gbk')) if hasattr(role, 'encode') else len(role) * 2)
-                            line_text = f"{indent}{shift_type}：{emps}"
+                            # 岗位的后续行，使用空格缩进对齐
+                            # 计算缩进空格数（按中文字符宽度）
+                            try:
+                                indent_len = len(role.encode('gbk'))
+                            except:
+                                indent_len = len(role) * 2
+                            indent = " " * indent_len
+                            line_text = f"{indent}{shift_short}：{emps}"
                         
                         cell = poster_sheet.cell(row=current_row, column=1)
                         cell.value = line_text
@@ -2406,10 +2107,10 @@ def export_schedule(format_type: str = "excel"):
                 # 每天之间留一空行
                 current_row += 1
             
-            # 隐藏网格线
+            # 隐藏网格线，方便复制
             poster_sheet.sheet_view.showGridLines = False
-            # --- 文字排班海报结束 ---
-
+            # --- 纯文字排班表结束 ---
+            
             # 添加图例说明（在数据下方）
             legend_row = worksheet.max_row + 2
             legend_items = [
@@ -2711,23 +2412,20 @@ def view_schedule():
                 real_shortage = max(0, shortage - rest_day_available)
                 total_vacancies += real_shortage
     
-    # 顶部统计卡片（响应式）
+    # 顶部统计卡片 (Bento Pro Layout)
     st.markdown(f"""
-    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
-        <div class="stat-card" style="flex: 1 1 150px; min-width: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                    padding: 18px 12px; border-radius: 12px; color: white; text-align: center; box-shadow: 0 4px 15px rgba(102,126,234,0.3);">
-            <h2 style="margin: 0; color: white; font-size: 28px;">{len(dates)}</h2>
-            <p style="margin: 6px 0 0 0; opacity: 0.9; font-size: 13px;">排班天数</p>
+    <div class="bento-grid">
+        <div class="bento-card" style="grid-column: span 4;">
+            <div class="metric-title">排班周期</div>
+            <div class="metric-value-large">{len(dates)}<span style="font-size: 20px; font-weight: 600; color: var(--text-sub); margin-left: 8px;">天</span></div>
         </div>
-        <div class="stat-card" style="flex: 1 1 150px; min-width: 120px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); 
-                    padding: 18px 12px; border-radius: 12px; color: white; text-align: center; box-shadow: 0 4px 15px rgba(17,153,142,0.3);">
-            <h2 style="margin: 0; color: white; font-size: 28px;">{total_assignments}</h2>
-            <p style="margin: 6px 0 0 0; opacity: 0.9; font-size: 13px;">总排班次数</p>
+        <div class="bento-card" style="grid-column: span 4;">
+            <div class="metric-title">总派工量</div>
+            <div class="metric-value-large">{total_assignments}</div>
         </div>
-        <div class="stat-card" style="flex: 1 1 150px; min-width: 120px; background: linear-gradient(135deg, {'#f093fb' if total_vacancies == 0 else '#eb3349'} 0%, {'#f5576c' if total_vacancies == 0 else '#f45c43'} 100%); 
-                    padding: 18px 12px; border-radius: 12px; color: white; text-align: center; box-shadow: 0 4px 15px rgba(245,87,108,0.3);">
-            <h2 style="margin: 0; color: white; font-size: 28px;">{total_vacancies}</h2>
-            <p style="margin: 6px 0 0 0; opacity: 0.9; font-size: 13px;">{'✅ 无空岗' if total_vacancies == 0 else '⚠️ 空岗数'}</p>
+        <div class="bento-card" style="grid-column: span 4;">
+            <div class="metric-title">实时缺口</div>
+            <div class="metric-value-large" style="color: {'var(--text-main)' if total_vacancies == 0 else 'var(--accent-pink)'}">{total_vacancies}</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -2744,6 +2442,78 @@ def view_schedule():
         csv_data, csv_filename = export_schedule("csv")
         if csv_data:
             st.download_button("📄 导出 CSV", csv_data, csv_filename, "text/csv", use_container_width=True)
+    
+    st.markdown("---")
+    
+    # 【新功能】可复制的排班表
+    with st.expander("📋 排班表（点击展开复制）", expanded=False):
+        st.caption("💡 可直接复制下方文字发送到群组")
+        
+        # 生成纯文字格式
+        text_lines = []
+        role_display_order = ["咨客", "水吧", "一期水吧", "二期水吧", "花房"]
+        
+        for date_str in dates:
+            # 日期行
+            weekday = get_weekday_chinese(date_str)
+            d = datetime.strptime(date_str, "%Y-%m-%d")
+            text_lines.append(f"{d.month}.{d.day}{weekday}")
+            
+            # 获取当天排班并分组
+            date_schedule = schedule.get(date_str, {})
+            assignments = date_schedule.get("assignments", {})
+            
+            # 按岗位分组
+            role_groups = {}
+            for emp_id, shift_id in assignments.items():
+                emp_name = employees.get(emp_id, {}).get("name", emp_id)
+                
+                if '-' in shift_id:
+                    role, shift_type = shift_id.split('-', 1)
+                else:
+                    found = False
+                    for kw in ["早早班", "早班", "晚班", "早", "晚"]:
+                        if kw in shift_id:
+                            role = shift_id.replace(kw, "").strip()
+                            shift_type = kw
+                            found = True
+                            break
+                    if not found:
+                        role, shift_type = shift_id, ""
+                
+                shift_short = shift_type.replace("班", "")
+                
+                if role not in role_groups:
+                    role_groups[role] = {}
+                if shift_short not in role_groups[role]:
+                    role_groups[role][shift_short] = []
+                role_groups[role][shift_short].append(emp_name)
+            
+            # 按岗位顺序输出
+            sorted_roles = sorted(role_groups.keys(), 
+                key=lambda x: role_display_order.index(x) if x in role_display_order else 99)
+            
+            for role in sorted_roles:
+                role_shifts = role_groups[role]
+                shift_order = {"早早": 0, "早": 1, "晚": 2}
+                sorted_shifts = sorted(role_shifts.keys(), key=lambda x: shift_order.get(x, 99))
+                
+                for i, shift_short in enumerate(sorted_shifts):
+                    emps = " ".join(role_shifts[shift_short])
+                    if i == 0:
+                        text_lines.append(f"{role}{shift_short}：{emps}")
+                    else:
+                        try:
+                            indent_len = len(role.encode('gbk'))
+                        except:
+                            indent_len = len(role) * 2
+                        indent = " " * indent_len
+                        text_lines.append(f"{indent}{shift_short}：{emps}")
+            
+            text_lines.append("")  # 空行分隔
+        
+        copyable_text = "\n".join(text_lines)
+        st.text_area("", copyable_text, height=400, label_visibility="collapsed")
     
     st.markdown("---")
     
@@ -2911,17 +2681,17 @@ def view_schedule():
                 """根据班次类型返回单元格样式"""
                 val_str = str(val)
                 if "早早" in val_str:
-                    return 'background: linear-gradient(135deg, #FCE4D6 0%, #F8CBAD 100%); color: #C55A11; font-weight: 600;'
+                    return 'background: #eef2ff; color: #6366f1; font-weight: 700; border-radius: 8px;'
                 elif "早" in val_str and "早早" not in val_str:
-                    return 'background: linear-gradient(135deg, #DDEBF7 0%, #B8D4F0 100%); color: #1F4E79; font-weight: 600;'
+                    return 'background: #e0f2fe; color: #0ea5e9; font-weight: 700; border-radius: 8px;'
                 elif "晚" in val_str:
-                    return 'background: linear-gradient(135deg, #E2D5F1 0%, #D4C4E8 100%); color: #5B2C6F; font-weight: 600;'
+                    return 'background: #f5f3ff; color: #8b5cf6; font-weight: 700; border-radius: 8px;'
                 elif val_str == "休":
-                    return 'background: linear-gradient(135deg, #C6EFCE 0%, #A9E4B1 100%); color: #006100; font-weight: 600;'
+                    return 'background: #ecfdf5; color: #10b981; font-weight: 700; border-radius: 8px;'
                 elif "待" in val_str:
-                    return 'background: linear-gradient(135deg, #FFEB9C 0%, #FFD966 100%); color: #9C5700; font-weight: 500;'
+                    return 'background: #fffbeb; color: #f59e0b; font-weight: 600; border-radius: 8px;'
                 elif val_str == "—":
-                    return 'background: #f8f9fa; color: #adb5bd;'
+                    return 'color: #cbd5e1;'
                 else:
                     return ''
             
@@ -2929,37 +2699,39 @@ def view_schedule():
             styled_table = pivot_table.style.applymap(style_shift_cell)
             styled_table = styled_table.set_properties(**{
                 'text-align': 'center',
-                'font-size': '12px',
-                'padding': '10px 4px',
-                'border': '1px solid #e2e8f0',
-                'min-width': '100px',
-                'line-height': '1.2'
+                'font-size': '14px',
+                'padding': '12px 10px',
+                'border': 'none',
+                'min-width': '120px',
+                'line-height': '1.5'
             })
             styled_table = styled_table.set_table_styles([
                 {'selector': 'th', 'props': [
-                    ('background', 'linear-gradient(135deg, #4472C4 0%, #5B9BD5 100%)'),
-                    ('color', 'white'),
-                    ('font-weight', '600'),
+                    ('background', 'rgba(255, 255, 255, 0.8)'),
+                    ('color', '#64748b'),
+                    ('font-weight', '800'),
                     ('text-align', 'center'),
-                    ('padding', '12px 6px'),
-                    ('font-size', '12px'),
-                    ('border', '1px solid #3a63ad')
+                    ('padding', '18px 12px'),
+                    ('font-size', '13px'),
+                    ('border-bottom', '2px solid #f1f5f9'),
+                    ('text-transform', 'uppercase'),
+                    ('letter-spacing', '1.5px')
                 ]},
                 {'selector': 'th.row_heading', 'props': [
-                    ('background', 'linear-gradient(135deg, #2F5496 0%, #4472C4 100%)'),
-                    ('color', 'white'),
-                    ('font-weight', '600'),
-                    ('min-width', '80px'),
+                    ('background', 'white'),
+                    ('color', '#1e293b'),
+                    ('font-weight', '800'),
+                    ('min-width', '110px'),
                     ('position', 'sticky'),
                     ('left', '0'),
-                    ('z-index', '1')
+                    ('z-index', '1'),
+                    ('box-shadow', '5px 0 15px rgba(0,0,0,0.02)')
                 ]},
                 {'selector': 'table', 'props': [
-                    ('border-collapse', 'collapse'),
-                    ('border-radius', '12px'),
-                    ('overflow', 'hidden'),
-                    ('box-shadow', '0 4px 20px rgba(0,0,0,0.1)'),
-                    ('width', '100%')
+                    ('border-collapse', 'separate'),
+                    ('border-spacing', '8px'),
+                    ('width', '100%'),
+                    ('background', 'transparent')
                 ]}
             ])
             
@@ -3129,9 +2901,10 @@ def analyze_schedule():
     
     if not schedule:
         st.markdown("""
-        <div style="text-align: center; padding: 60px 20px; background: #f8f9fa; border-radius: 12px;">
-            <h2 style="color: #6c757d;">📭 暂无排班数据</h2>
-            <p style="color: #adb5bd;">请先在「🚀 生成排班」页面生成排班表</p>
+        <div style="text-align: center; padding: 100px 20px; background: white; border-radius: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+            <h2 style="color: #cbd5e1; font-size: 64px;">📊</h2>
+            <h3 style="color: #64748b;">暂无分析数据</h3>
+            <p style="color: #94a3b8;">请先在「🎯 生成排班」页面生成排班表</p>
         </div>
         """, unsafe_allow_html=True)
         return
@@ -3156,25 +2929,42 @@ def analyze_schedule():
         is_monday = weekday_chinese == "周一"
         
         for shift_id, shift in shifts.items():
-            # 如果是周一且不需要早早班，跳过早早班的空岗统计
             if is_monday and monday_no_early_early and shift_id == fixed_early_early_shift:
-                continue  # 周一不需要早早班，不算空岗
+                continue 
             
-            required_staff = get_required_staff_for_view(shift_id, date_str, schedule, shifts)  # 使用动态规则
+            required_staff = get_required_staff_for_view(shift_id, date_str, schedule, shifts)
             actual_staff = sum(1 for s in assignments.values() if s == shift_id)
             total_required += required_staff
             if actual_staff < required_staff:
                 total_vacancies += (required_staff - actual_staff)
     
-    with col1:
-        st.metric("总天数", total_days)
-    with col2:
-        st.metric("总排班次数", total_assignments)
-    with col3:
-        st.metric("空岗数", total_vacancies)
-    with col4:
         coverage_rate = round((total_assignments / total_required * 100) if total_required > 0 else 0, 1)
-        st.metric("覆盖率", f"{coverage_rate}%")
+    
+    # Bento Analytics Grid
+    st.markdown(f"""
+    <div class="bento-grid">
+        <div class="bento-card" style="grid-column: span 3;">
+            <div class="metric-title">分析时段</div>
+            <div class="metric-value-large">{total_days}</div>
+            <div style="font-size: 12px; color: var(--text-sub); margin-top: 8px;">TOTAL DAYS</div>
+        </div>
+        <div class="bento-card" style="grid-column: span 3;">
+            <div class="metric-title">总派工量</div>
+            <div class="metric-value-large">{total_assignments}</div>
+            <div style="font-size: 12px; color: var(--text-sub); margin-top: 8px;">TOTAL SHIFTS</div>
+        </div>
+        <div class="bento-card" style="grid-column: span 3;">
+            <div class="metric-title">岗位覆盖率</div>
+            <div class="metric-value-large" style="color: var(--accent-green);">{coverage_rate}%</div>
+            <div style="font-size: 12px; color: var(--text-sub); margin-top: 8px;">COVERAGE RATE</div>
+        </div>
+        <div class="bento-card" style="grid-column: span 3;">
+            <div class="metric-title">空岗预警</div>
+            <div class="metric-value-large" style="color: { 'var(--accent-orange)' if total_vacancies > 0 else 'var(--text-main)' }">{total_vacancies}</div>
+            <div style="font-size: 12px; color: var(--text-sub); margin-top: 8px;">VACANCIES</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # 员工排班天数和工作小时统计
     st.subheader("👥 员工排班统计")
@@ -3226,9 +3016,17 @@ def analyze_schedule():
                 x="员工",
                 y="排班天数",
                 title="员工排班天数分布",
-                labels={"员工": "员工", "排班天数": "排班天数"}
+                labels={"员工": "员工", "排班天数": "排班天数"},
+                template="plotly_white",
+                color_discrete_sequence=["#0071e3"]
             )
-        fig.update_xaxes(tickangle=45)
+            fig.update_layout(
+                plot_bgcolor="rgba(0,0,0,0)",
+                paper_bgcolor="rgba(0,0,0,0)",
+                font_family="SF Pro Display",
+                title_font_size=20,
+                xaxis_tickangle=45
+            )
         st.plotly_chart(fig, use_container_width=True)
         
         with col2:
@@ -3237,9 +3035,17 @@ def analyze_schedule():
                 x="员工",
                 y="总工作小时",
                 title="员工工作小时分布",
-                labels={"员工": "员工", "总工作小时": "总工作小时"}
+                labels={"员工": "员工", "总工作小时": "总工作小时"},
+                template="plotly_white",
+                color_discrete_sequence=["#af52de"]
             )
-            fig.update_xaxes(tickangle=45)
+            fig.update_layout(
+                plot_bgcolor="rgba(0,0,0,0)",
+                paper_bgcolor="rgba(0,0,0,0)",
+                font_family="SF Pro Display",
+                title_font_size=20,
+                xaxis_tickangle=45
+            )
             st.plotly_chart(fig, use_container_width=True)
         
         # 工作强度分析
@@ -3327,7 +3133,15 @@ def analyze_schedule():
                 usage_df,
                 values="出现天数",
                 names="班次",
-                title="班次出现天数分布"
+                title="班次出现天数分布",
+                template="plotly_white",
+                hole=0.4
+            )
+            fig.update_layout(
+                plot_bgcolor="rgba(0,0,0,0)",
+                paper_bgcolor="rgba(0,0,0,0)",
+                font_family="SF Pro Display",
+                title_font_size=20
             )
         st.plotly_chart(fig, use_container_width=True)
         
@@ -3337,9 +3151,17 @@ def analyze_schedule():
                 x="班次",
                 y="空岗天数",
                 title="班次空岗天数",
-                labels={"班次": "班次", "空岗天数": "空岗天数"}
+                labels={"班次": "班次", "空岗天数": "空岗天数"},
+                template="plotly_white",
+                color_discrete_sequence=["#ff3b30"]
             )
-            fig.update_xaxes(tickangle=45)
+            fig.update_layout(
+                plot_bgcolor="rgba(0,0,0,0)",
+                paper_bgcolor="rgba(0,0,0,0)",
+                font_family="SF Pro Display",
+                title_font_size=20,
+                xaxis_tickangle=45
+            )
             st.plotly_chart(fig, use_container_width=True)
     
     # 空岗详细分析
@@ -3437,71 +3259,46 @@ def main():
     """主函数"""
     init_session_state()
     
-    # 侧边栏Logo和标题
+    # 侧边栏品牌区域
     st.sidebar.markdown("""
-    <div style="text-align: center; padding: 25px 0 15px 0;">
-        <div style="font-size: 48px; margin-bottom: 5px;">📅</div>
-        <h3 style="color: white; margin: 5px 0; font-weight: 700; font-size: 20px;">智能排班系统</h3>
-        <p style="color: rgba(255,255,255,0.6); font-size: 12px; margin: 0;">Smart Scheduling System</p>
+    <div class="brand-section">
+        <h1>智能排班</h1>
+        <p>OS Pro 2026</p>
     </div>
     """, unsafe_allow_html=True)
     
-    # 显示数据状态指示器
+    # 系统状态概览 (Bento Sidebar Card)
     emp_count = len(st.session_state.employees)
     shift_count = len(st.session_state.shifts)
     schedule_count = len(st.session_state.schedule)
     
-    status_color = "#06d6a0" if (emp_count > 0 and shift_count > 0) else "#ffd166"
     st.sidebar.markdown(f"""
-    <div style="background: rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; margin: 0 5px 15px 5px;">
-        <div style="display: flex; justify-content: space-around; text-align: center;">
-            <div>
-                <div style="color: white; font-size: 18px; font-weight: 700;">{emp_count}</div>
-                <div style="color: rgba(255,255,255,0.6); font-size: 11px;">员工</div>
+    <div style="padding: 0 1rem; margin-bottom: 2rem;">
+        <div style="background: rgba(255,255,255,0.4); border-radius: 24px; padding: 20px; border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; font-weight: 700; color: var(--text-sub);">活跃员工</span>
+                    <span style="font-size: 16px; font-weight: 800; color: var(--text-main);">{emp_count}</span>
             </div>
-            <div style="border-left: 1px solid rgba(255,255,255,0.2); height: 35px;"></div>
-            <div>
-                <div style="color: white; font-size: 18px; font-weight: 700;">{shift_count}</div>
-                <div style="color: rgba(255,255,255,0.6); font-size: 11px;">班次</div>
+                <div style="height: 1px; background: rgba(0,0,0,0.05);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; font-weight: 700; color: var(--text-sub);">配置班次</span>
+                    <span style="font-size: 16px; font-weight: 800; color: var(--text-main);">{shift_count}</span>
             </div>
-            <div style="border-left: 1px solid rgba(255,255,255,0.2); height: 35px;"></div>
-            <div>
-                <div style="color: white; font-size: 18px; font-weight: 700;">{schedule_count}</div>
-                <div style="color: rgba(255,255,255,0.6); font-size: 11px;">排班日</div>
+                <div style="height: 1px; background: rgba(0,0,0,0.05);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; font-weight: 700; color: var(--text-sub);">已排班日</span>
+                    <span style="font-size: 16px; font-weight: 800; color: var(--accent-blue);">{schedule_count}</span>
+                </div>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    st.sidebar.markdown("---")
+    # 导航菜单
+    st.sidebar.markdown('<p style="padding-left: 1.5rem; font-size: 11px; font-weight: 800; color: var(--text-sub); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.8rem;">Control Center</p>', unsafe_allow_html=True)
     
-    # 分组式导航
-    st.sidebar.markdown("""
-    <p style="color: rgba(255,255,255,0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 10px 0 5px 5px;">
-        ⚙️ 基础配置
-    </p>
-    """, unsafe_allow_html=True)
-    
-    # 侧边栏导航 - 配置模块
-    config_pages = ["👥 员工管理", "⏰ 班次管理", "📐 排班规则"]
-    
-    st.sidebar.markdown("""
-    <p style="color: rgba(255,255,255,0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 5px 5px;">
-        🚀 排班操作
-    </p>
-    """, unsafe_allow_html=True)
-    
-    action_pages = ["🎯 生成排班", "📋 查看排班", "📊 数据分析"]
-    
-    st.sidebar.markdown("""
-    <p style="color: rgba(255,255,255,0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 5px 5px;">
-        🤖 智能工具
-    </p>
-    """, unsafe_allow_html=True)
-    
-    ai_pages = ["✨ AI 智能微调"]
-    
-    all_pages = config_pages + action_pages + ai_pages
+    all_pages = ["👥 员工管理", "⏰ 班次管理", "📐 排班规则", "🎯 生成排班", "📋 查看排班", "📊 数据分析", "✨ AI 智能微调"]
     
     page = st.sidebar.radio(
         "导航菜单",
@@ -3509,7 +3306,7 @@ def main():
         label_visibility="collapsed"
     )
     
-    # 路由到不同页面
+    # 页面路由
     if page == "👥 员工管理":
         employee_management()
     elif page == "⏰ 班次管理":
@@ -3525,74 +3322,18 @@ def main():
     elif page == "✨ AI 智能微调":
         ai_schedule_tuning()
     
-    # AI 配置界面
+    # AI 配置 (精简版)
     st.sidebar.markdown("---")
-    
-    # 显示 AI 状态指示器
     api_key = st.session_state.get("ai_api_key", "")
-    if api_key:
-        st.sidebar.markdown("""
-        <div style="background: linear-gradient(135deg, #06d6a0 0%, #1b9aaa 100%); 
-                    padding: 8px 12px; border-radius: 8px; margin: 5px;">
-            <span style="color: white; font-size: 13px; font-weight: 500;">🟢 AI 已就绪</span>
-        </div>
-        """, unsafe_allow_html=True)
-    else:
-        st.sidebar.markdown("""
-        <div style="background: linear-gradient(135deg, #ffd166 0%, #ef476f 100%); 
-                    padding: 8px 12px; border-radius: 8px; margin: 5px;">
-            <span style="color: white; font-size: 13px; font-weight: 500;">🟡 AI 未配置</span>
-        </div>
-        """, unsafe_allow_html=True)
     
-    with st.sidebar.expander("🔧 AI 配置", expanded=not api_key):
-        # API Key 输入
-        new_api_key = st.text_input(
-            "🔑 API Key", 
-            type="password", 
-            value=st.session_state.get("ai_api_key", ""),
-            help="请输入您的 Google AI Studio API Key",
-            key="ai_api_key_input",
-            placeholder="输入您的 API Key..."
-        )
-        if new_api_key != st.session_state.get("ai_api_key", ""):
+    with st.sidebar.expander("🛠 AI 系统设置", expanded=not api_key):
+        new_api_key = st.text_input("🔑 API Key", type="password", value=api_key, key="ai_api_key_input")
+        if new_api_key != api_key:
             st.session_state.ai_api_key = new_api_key
         
-        # 模型选择下拉框
-        model_options = {
-            "gemini-2.0-flash": "Gemini 2.0 Flash (推荐)",
-            "gemini-1.5-pro": "Gemini 1.5 Pro (高精度)",
-            "gemini-1.5-flash": "Gemini 1.5 Flash (快速)",
-            "gemini-1.5-flash-8b": "Gemini 1.5 Flash 8B (轻量)",
-            "custom": "自定义模型..."
-        }
-        
-        current_model = st.session_state.get("ai_model", "gemini-2.0-flash")
-        # 检查当前模型是否在预设列表中
-        if current_model not in model_options and current_model != "custom":
-            selected_option = "custom"
-        else:
-            selected_option = current_model if current_model in model_options else "gemini-2.0-flash"
-        
-        selected_model = st.selectbox(
-            "🤖 AI 模型",
-            options=list(model_options.keys()),
-            format_func=lambda x: model_options[x],
-            index=list(model_options.keys()).index(selected_option) if selected_option in model_options else 0,
-            key="ai_model_select"
-        )
-        
-        if selected_model == "custom":
-            custom_model = st.text_input(
-                "自定义模型名称",
-                value=st.session_state.get("ai_model", ""),
-                key="ai_model_custom_input",
-                placeholder="输入模型名称..."
-            )
-            if custom_model:
-                st.session_state.ai_model = custom_model
-        else:
-            st.session_state.ai_model = selected_model
+        model_name = st.session_state.get("ai_model", "gemini-2.0-flash")
+        selected_model = st.selectbox("🤖 模型选择", ["gemini-2.0-flash", "gemini-1.5-pro", "custom"], index=0 if model_name=="gemini-2.0-flash" else 1)
+        st.session_state.ai_model = selected_model
         
         # 高级设置（可折叠）
         with st.expander("⚙️ 高级设置"):
